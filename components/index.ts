@@ -1,0 +1,6 @@
+export { default as Layout } from '@/components/Layout';
+export { default as HeroSection } from '@/components/UI/HeroSection';
+export { default as Preloader } from '@/components/Common/Preloader';
+export { default as AboutSection } from '@/components/UI/AboutSection';
+export { default as AudienceSection } from '@/components/UI/AudienceSection';
+export { default as ProgramSection } from '@/components/UI/Program';
