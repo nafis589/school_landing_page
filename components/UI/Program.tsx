@@ -100,7 +100,7 @@ const Services = () => {
                 stagger={0.08}
                 delay={0.4}
               >
-                Programmes
+                Programs
               </TextReveal>
             </h2>
             <p className="text-[2rem] md:text-[3.75rem] font-semibold leading-[120%] tracking-[-0.125rem]">
