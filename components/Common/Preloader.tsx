@@ -94,8 +94,8 @@ const Preloader = () => {
       });
     }, '-=0.8');
 
-    // Add a pulsing effect to the logo and text
-    gsap.to([logoRef.current, textRef.current], {
+    // Add a pulsing effect to the logo and text and keep a reference
+    const pulse = gsap.to([logoRef.current, textRef.current], {
       scale: 1.1,
       yoyo: true,
       repeat: -1,
@@ -105,6 +105,8 @@ const Preloader = () => {
 
     return () => {
       tl.kill();
+      // Stop the separate pulsing tween to avoid leaving active animations
+      if (pulse) pulse.kill();
     };
   }, [finishPreloader]);
 

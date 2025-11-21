@@ -1,132 +1,125 @@
-"use client";
-import { TextReveal } from "@/components/Common/Text-reveal";
-import Image from "next/image";
-import studio_banner from "@/public/images/hero_banner.jpg";
-import { useEffect, useRef } from "react";
-import { usePreloader } from "@/context/preloader";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { TopbarSection } from "../UI/TopbarSection";
-import logo from '@/public/svgs/logo_1.svg'
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { TopbarSection } from '../UI/TopbarSection';
+import logo from '@/public/svgs/logo_1.svg';
+import studio_banner from '@/public/images/hero_banner.jpg';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const About = () => {
-  const containerRef = useRef(null);
-  const imageWrapperRef = useRef<HTMLDivElement | null>(null);
-  const { isPreloaderDone } = usePreloader();
-
-  useEffect(() => {
-    if (isPreloaderDone) {
-      initializeGSAP();
-    }
-  }, [isPreloaderDone]);
-
-  const initializeGSAP = () => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      ScrollTrigger.refresh();
-
-      setTimeout(() => {
-        const imgEl = imageWrapperRef.current?.querySelector('img');
-        if (imgEl) {
-          gsap.to(imgEl, {
-            objectPosition: "50% 100%",
-            ease: "power1.inOut",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top top",
-              end: "bottom+=1000 bottom",
-              scrub: true,
-            },
-          });
-        }
-
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "bottom bottom-=300",
-          end: "bottom top-=300",
-          pin: true,
-          pinSpacing: false,
-          id: "hero-pin",
-        });
-
-        gsap.to(containerRef.current, {
-          rotateX: "12deg",
-          scale: 0.92,
-          opacity: 0.8,
-          transformOrigin: "center bottom",
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "bottom bottom-=300",
-            end: "bottom bottom-=500",
-            scrub: true,
-          },
-        });
-      }, 100);
-    }, containerRef);
-
-    return () => ctx.revert();
-  };
-
+const AboutHero: React.FC = () => {
   return (
-    <section ref={containerRef} className="space-y-[4.5rem]">
-      <TopbarSection logo = {logo} />
-      <div className="w-[90%] mx-auto max-w-[1440px]">
-        <div className="text-[4rem] md:text-[10rem] lg:text-[13rem] font-medium uppercase leading-[100%] font-helvetica">
-          <TextReveal
-            splitType="chars"
-            direction="up"
-            duration={0.7}
-            stagger={0.08}
-            delay={1}
-          >
-            ABOUT US
-          </TextReveal>
-        </div>
-        <p className="text-[1.75rem] md:text-[3.75rem] lg:text-[4rem] font-semibold leading-[120%] tracking-[-0.125rem] font-helvetica">
-          {[
-            "Discover our mission, values, & the",
-            "passionate team behind our success.",
-          ].map((lines, i) => (
-            <TextReveal
-              splitType="lines"
-              direction="up"
-              duration={0.7}
-              stagger={0.08}
-              delay={i === 0 ? 1.2 : i * 0.05 + 1.4}
-              key={i}
-            >
-              {lines}
-            </TextReveal>
-          ))}
-        </p>
+    <div className="relative w-full min-h-screen bg-slate-900 overflow-hidden font-helvetica">
+
+      {/* BACKGROUND IMAGE */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${studio_banner.src})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40 md:bg-black/40"></div>
       </div>
 
-      <div className="h-[65vh] md:h-[75vh] lg:h-[85vh] w-full relative overflow-hidden">
-        <div
-          ref={imageWrapperRef}
-          style={{
-            position: "absolute",
-            inset: 0,
-          }}
-        >
-          <Image
-            src={studio_banner}
-            alt="studio banner"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-            style={{
-              objectPosition: "50% 0%",
-            }}
-          />
-        </div>
+      {/* Topbar */}
+      <div className="absolute top-0 left-0 w-full z-20">
+        <TopbarSection logo={logo} />
       </div>
-    </section>
+
+      {/* MAIN CONTENT */}
+      <div className="relative z-10 flex flex-col justify-between h-screen max-w-[1400px] mx-auto px-6 pt-20 pb-12 md:px-12 md:pt-24 md:pb-16 lg:pt-28 lg:pb-20 text-white">
+
+        {/* --- TOP SECTION --- */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0">
+
+          {/* Top Left: Stats */}
+          <div className="flex flex-row gap-12 md:gap-20">
+
+            <div className="flex flex-col">
+              <span className="text-4xl md:text-5xl font-light tracking-tight mb-1">
+                100%
+              </span>
+              <span className="text-xs md:text-sm text-gray-300 uppercase tracking-wider font-medium">
+                Safe Learning
+              </span>
+            </div>
+
+            <div className="flex flex-col">
+              <span className="text-4xl md:text-5xl font-light tracking-tight mb-1">
+                3 Sections
+              </span>
+              <span className="text-xs md:text-sm text-gray-300 uppercase tracking-wider font-medium">
+                Nursery • Primary • Secondary
+              </span>
+            </div>
+
+          </div>
+
+          {/* Top Right: Paragraph */}
+          <div className="max-w-md lg:text-right">
+            <p className="text-base md:text-lg text-gray-200 font-light leading-relaxed">
+              God Is Alive Academy provides a nurturing and academically rigorous bilingual
+              environment where students are guided morally, spiritually, and intellectually
+              to become responsible global citizens.
+            </p>
+          </div>
+        </div>
+
+        {/* --- BOTTOM SECTION --- */}
+        <div className="flex flex-col lg:flex-row items-end justify-between gap-12 lg:gap-0 mt-auto">
+
+          {/* Bottom Left: Headline */}
+          <div className="w-full lg:w-2/3">
+            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] md:leading-[1.1] font-normal tracking-tight">
+              Shaping Tomorrow’s <br className="hidden md:block" />
+              Leaders Through <br className="hidden md:block" />
+              Excellence and <br className="hidden md:block" />
+              Bilingual Education
+            </h1>
+          </div>
+
+          {/* Bottom Right: CTA & Details */}
+          <div className="w-full lg:w-auto flex flex-col items-start lg:items-end gap-6 pb-2">
+
+            {/* CTA Button */}
+            <button className="group flex items-center gap-4 bg-white text-black px-8 py-4 md:px-10 md:py-5 text-lg font-medium hover:bg-gray-100 transition-all duration-300 cursor-pointer">
+              Enroll Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {/* Line */}
+            <div className="w-full lg:w-[120%] h-[1px] bg-white/30 lg:-ml-[20%]"></div>
+
+            {/* Footer Text */}
+            <div className="flex items-center justify-between w-full lg:justify-end gap-4">
+
+              <div className="lg:hidden opacity-60">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg>
+              </div>
+
+              <span className="text-sm text-gray-400 font-medium tracking-wide">
+                Educating with Purpose since 2016
+              </span>
+            </div>
+
+            {/* Desktop Globe */}
+            <div className="hidden lg:block absolute bottom-4 left-[68%] opacity-50">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 };
 
-export default About;
+export default AboutHero;
