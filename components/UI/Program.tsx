@@ -92,7 +92,7 @@ const Services = () => {
           </div>
 
           <div>
-            <h2 className="text-[6rem] md:text-[10rem] font-helvetica uppercase leading-[100%]">
+            <h2 className="text-[6rem] md:text-[10rem] font-medium uppercase leading-[100%]">
               <TextReveal
                 splitType="chars"
                 direction="up"
@@ -165,7 +165,7 @@ const ServiceCard: FC<
       </div>
       <div className="w-full md:w-[60%] p-6 md:p-[6rem] flex flex-col justify-between">
         <div className="space-y-4">
-          <h2 className="font-helvetica uppercase flex flex-col leading-[100%] text-[5rem]">
+          <h2 className="font-medium uppercase flex flex-col leading-[100%] text-[5rem]">
             {title.map((t: string, i: number) => (
               <TextReveal
                 splitType="chars"

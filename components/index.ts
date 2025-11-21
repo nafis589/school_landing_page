@@ -4,3 +4,6 @@ export { default as Preloader } from '@/components/Common/Preloader';
 export { default as AboutSection } from '@/components/UI/AboutSection';
 export { default as AudienceSection } from '@/components/UI/AudienceSection';
 export { default as ProgramSection } from '@/components/UI/Program';
+export { default as ActivitySection } from '@/components/UI/Activity';
+export { default as TestimonialSection } from '@/components/UI/TestimonialSection';
+export { default as Footer } from '@/components/UI/Footer';

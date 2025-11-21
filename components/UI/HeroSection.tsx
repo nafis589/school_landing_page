@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { usePreloader } from '@/context/preloader';
 import { TopbarSection } from './TopbarSection';
+import logo from '@/public/svgs/logo.svg'
 
 const HeroSection = () => {
   const ref = useRef(null);
@@ -15,7 +16,7 @@ const HeroSection = () => {
       className="h-screen relative flex flex-col w-full overflow-hidden"
       ref={ref}
     >
-      <TopbarSection />
+      <TopbarSection logo={logo} />
 
       <motion.div
         className="absolute inset-0 -z-10"

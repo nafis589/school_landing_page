@@ -23,7 +23,7 @@ const containerVariants = {
   },
 };
 
-export const TopbarSection = () => {
+export const TopbarSection = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -39,7 +39,7 @@ export const TopbarSection = () => {
           className="flex items-center justify-between max-md:w-full"
         >
           <div className="flex items-center gap-3">
-            <Image src={logo} alt="logo" />
+            <Image src={props.logo} alt="logo" />
           </div>
 
           <div className="md:hidden">
@@ -53,7 +53,7 @@ export const TopbarSection = () => {
         >
           {['Home', 'About', 'Membership'].map((item) => (
             <motion.li key={item} variants={wordVariants}>
-              <Link href="#" className="tracking-[-0.02rem]">
+              <Link href={`/${item.toLowerCase()}`} className="tracking-[-0.02rem]">
                 {item}
               </Link>
             </motion.li>
